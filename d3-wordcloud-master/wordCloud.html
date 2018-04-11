@@ -1,0 +1,456 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <script src="lib/d3/d3.js"></script>
+    <script src="lib/d3/d3.layout.cloud.js"></script>
+    <script src="d3.wordcloud.js"></script>
+    <link rel="stylesheet"      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+   	<div class="topnav">
+  	<div class="search-container">
+      <input type="text" placeholder="Search.." name="search" id= "search">
+      <button id = "button1" type="submit" onclick="getSearch()"><i class="fa
+          fa-search"></i></button>
+	</br>
+  	</div>
+	</div>
+    <div id='option' style='display:none'>
+        <p><h2>Facebook</p>
+      <button id = "button1" type="submit" onclick="getTweetCloudFB()">Twitter
+      WordCount</button>
+      <button id = "button2" type="submit"
+          onclick="getNytimesCloudFB()">NyTimes WordCount</button>
+      <button id = "button11" type="submit"
+          onclick="getTweetCloudFBCO()">Twitter Co-occurence</button>
+      <button id = "button21" type="submit"
+          onclick="getNytimesCloudFBCO()">NyTimes Co-occurence</button>
+    </div>
+    <div id='option1' style='display:none'>
+        <p><h2>China</p>
+      <button id = "button3" type="submit" onclick="getTweetCloudCh()">Twitter
+      WordCount</button>
+      <button id = "button4" type="submit"
+          onclick="getNytimesCloudCh()">NyTimes WordCount</button>
+      <button id = "button33" type="submit"
+          onclick="getTweetCloudChCO()">Twitter Co-occurence</button>
+      <button id = "button43" type="submit"
+          onclick="getNytimesCloudChCO()">NyTimes Co-occurence</button>
+    </div>
+    <div id='option2' style='display:none'>
+        <p><h2>Trump</p>
+      <button id = "button5" type="submit" onclick="getTweetCloudTr()">Twitter
+      WordCount</button>
+      <button id = "button6" type="submit"
+          onclick="getNytimesCloudTr()">NyTimes WordCount</button>
+      <button id = "button55" type="submit"
+          onclick="getTweetCloudTrCO()">Twitter Co-ocurrence</button>
+      <button id = "button65" type="submit"
+          onclick="getNytimesCloudTrCO()">NyTimes Co-occurence</button>
+    </div>
+	</div>
+    <div id='wordcloud' style='display:none'></div>
+  </div>
+    <script>
+        function getSearch(){
+        var search = document.getElementById("search").value;
+        search = search.toLowerCase();
+        console.log(search)
+		if (search)
+		{
+            console.log(search)
+            console.log(search)
+			switch (search)
+			{
+				case 'trump':
+                        getOptionTr();
+                        break;
+				case 'facebook':
+                        getOptionFB();
+                        break;
+				case 'china':
+					getOptionCh();
+                    break;
+				default:
+					alert("We Do Not have the context for the data you provided at this moment !!");
+			}
+		}
+        document.getElementById("search").value ="";
+	}
+	function getOptionFB()
+	{
+        console.log("Coming to getOption");
+		document.getElementById("option1").style.display='none';
+		document.getElementById("option2").style.display='none';
+		document.getElementById("wordcloud").style.display='none';
+		document.getElementById("option").style.display='block';
+	}
+	function getOptionTr()
+	{
+        console.log("Coming to getOption");
+		document.getElementById("option").style.display='none';
+		document.getElementById("option1").style.display='none';
+		document.getElementById("wordcloud").style.display='none';
+		document.getElementById("option2").style.display='block';
+	}
+	function getOptionCh()
+	{
+        console.log("Coming to getOption");
+		document.getElementById("option").style.display='none';
+		document.getElementById("option2").style.display='none';
+		document.getElementById("option1").style.display='block';
+		document.getElementById("wordcloud").style.display='none';
+	}
+    var flag =0;
+	function getTweetCloudFB(){
+    console.log("Coming to the function Facebook Tweet");
+	var x =document.getElementById("wordcloud");
+
+	x.style.display ="none";
+	if (x.style.display ==="none"){
+		if (flag ===0){
+            x.innerHTML= "";
+			d3.tsv("wc_output/twitter_facebook/twitter_facebook_1/sorted_data.tsv", function(data) {
+				d3.wordcloud()
+                    .size([1000, 600])
+					.words(data)
+					.start();
+			});
+			flag =1
+			x.style.display ="block";
+		}else{
+            flag =0;
+		}
+	}
+	}
+
+    var flag1 =0;
+	function getTweetCloudCh(){
+	console.log("Coming to the function China  Tweet");
+	var x =document.getElementById("wordcloud");
+
+	x.style.display ="none";
+	if (x.style.display ==="none"){
+		if (flag1 ===0){
+            x.innerHTML="";
+			d3.tsv("wc_output/twitter_china/twitter_china_1/sorted_data.tsv", function(data) {
+				d3.wordcloud()
+                    .size([1000, 600])
+					.words(data)
+					.start();
+			});
+			flag1 =1
+				x.style.display ="block";
+		}else{
+            flag1 =0;
+		}
+	}
+	}
+
+    var flag2 =0;
+	function getTweetCloudTr(){
+	console.log("Coming to the function Trump Tweet");
+	var x =document.getElementById("wordcloud");
+
+	x.style.display ="none";
+	if (x.style.display ==="none"){
+		if (flag2 ===0){
+            x.innerHTML="";
+			d3.tsv("wc_output/twitter_trump/twitter_trump_1/sorted_data.tsv", function(data) {
+				d3.wordcloud()
+                    .size([1000, 600])
+					.words(data)
+					.start();
+			});
+			flag2 =1
+				x.style.display ="block";
+		}else{
+            flag2 =0;
+		}
+	}
+	}
+
+    var flag3 =0;
+	function getNytimesCloudFB(){
+	console.log("Coming to the function FB nytimes");
+	var x =document.getElementById("wordcloud");
+	x.style.display ="none";
+	if (x.style.display ==="none"){
+		if (flag3 ===0){
+            x.innerHTML="";
+			d3.tsv("wc_output/nyDataArticle_facebook/sorted_data.tsv", function(data) {
+				d3.wordcloud()
+					.size([1000, 600])
+					.words(data)
+					.start();
+			});
+			flag3 =1
+				x.style.display ="block";
+		}else{
+			flag3 =0
+		}
+	}
+	}
+
+    var flag4 =0;
+	function getNytimesCloudCh(){
+	console.log("Coming to the function Ny times china");
+	var x =document.getElementById("wordcloud");
+	x.style.display ="none";
+	if (x.style.display ==="none"){
+		if (flag4 ===0){
+            x.innerHTML="";
+			d3.tsv("wc_output/nyDataArticle_china/sorted_data.tsv", function(data) {
+				d3.wordcloud()
+					.size([1000, 600])
+					.words(data)
+					.start();
+			});
+			flag4 =1
+				x.style.display ="block";
+		}else{
+			flag4 =0
+		}
+	}
+	}
+
+
+
+    var flag5 =0;
+	function getNytimesCloudTr(){
+	console.log("Coming to the function Ny times china");
+	var x =document.getElementById("wordcloud");
+	x.style.display ="none";
+	if (x.style.display ==="none"){
+		if (flag5 ===0){
+            x.innerHTML="";
+			d3.tsv("wc_output/nyDataArticle_trump/sorted_data.tsv", function(data) {
+				d3.wordcloud()
+					.size([1000, 600])
+					.words(data)
+					.start();
+			});
+			flag5 =1
+				x.style.display ="block";
+		}else{
+			flag5 =0
+		}
+	}
+	}
+    var flag6=0
+	function getTweetCloudFBCO(){
+    console.log("Coming to the function Facebook Tweet");
+	var x =document.getElementById("wordcloud");
+
+	x.style.display ="none";
+	if (x.style.display ==="none"){
+        if (flag6 ===0){
+            x.innerHTML= "";
+			d3.tsv("wc_cooccur_out/twitter_cooccur_facebook/sorted_data.tsv", function(data) {
+				d3.wordcloud()
+                    .size([1000, 600])
+					.words(data)
+					.start();
+			});
+            flag6 =1;
+			x.style.display ="block";
+		}else{
+            flag6 =0;
+		}
+	}
+    }
+
+    var flag7=0
+	function getTweetCloudChCO(){
+	console.log("Coming to the function China  Tweet");
+	var x =document.getElementById("wordcloud");
+
+	x.style.display ="none";
+	if (x.style.display ==="none"){
+        if (flag7 ===0){
+            x.innerHTML="";
+			d3.tsv("wc_cooccur_out/twitter_cooccur_china/sorted_data.tsv", function(data) {
+				d3.wordcloud()
+                    .size([1000, 600])
+					.words(data)
+					.start();
+			});
+            flag7 =1;
+				x.style.display ="block";
+		}else{
+            flag7=0;
+		}
+	}
+    }
+
+    var flag8 =0;
+	function getTweetCloudTrCO(){
+	console.log("Coming to the function Trump Tweet");
+	var x =document.getElementById("wordcloud");
+    
+	x.style.display ="none";
+	if (x.style.display ==="none"){
+        if (flag8 ===0){
+            x.innerHTML="";
+			d3.tsv("wc_cooccur_out/twitter_cooccur_trump/sorted_data.tsv", function(data) {
+				d3.wordcloud()
+                    .size([1000, 600])
+					.words(data)
+					.start();
+			});
+				x.style.display ="block";
+		}else{
+            flag8=0;
+		}
+	}
+    }
+    
+
+    var flag9 =0;
+	function getNytimesCloudFBCO(){
+	console.log("Coming to the function FB nytimes");
+	var x =document.getElementById("wordcloud");
+	x.style.display ="none";
+	if (x.style.display ==="none"){
+            if (flag9 === 0){
+            x.innerHTML="";
+			d3.tsv("wc_cooccur_out/ny_cooccur_facebook/sorted_data.tsv", function(data) {
+				d3.wordcloud()
+					.size([1000, 600])
+					.words(data)
+					.start();
+			});
+			flag9 =1;
+            x.style.display ="block";
+		}else{
+            flag9 =0;
+		}
+	}
+    }
+    
+    var flag10;
+	function getNytimesCloudChCO(){
+	console.log("Coming to the function Ny times china");
+	var x =document.getElementById("wordcloud");
+	x.style.display ="none";
+	if (x.style.display ==="none"){
+        if (flag10 ===0){
+            x.innerHTML="";
+			d3.tsv("wc_cooccur_out/ny_cooccur_china/sorted_data.tsv", function(data) {
+				d3.wordcloud()
+					.size([1000, 600])
+					.words(data)
+					.start();
+			});
+            flag10 =1;
+				x.style.display ="block";
+		}else{
+            flag10 =0;
+		}
+	}
+    
+    }
+    var flag11;
+	function getNytimesCloudTrCO(){
+	console.log("Coming to the function Trump NYT");
+	var x =document.getElementById("wordcloud");
+			x.style.display ="none";
+	if (x.style.display ==="none"){
+            if (flag11 ===0){
+            x.innerHTML="";
+			d3.tsv("wc_cooccur_out/ny_cooccur_trump/sorted_data.tsv", function(data) {
+				d3.wordcloud()
+					.size([1000, 600])
+					.words(data)
+					.start();
+			});
+            flag11 =1;
+				x.style.display ="block";
+		}else{
+            flag11 =0;
+		}
+	}
+    
+}
+    
+    </script>
+	<style>
+* {box-sizing: border-box;}
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #e9e9e9;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #2196F3;
+  color: white;
+}
+
+.topnav .search-container {
+  float: right;
+}
+
+.topnav input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+}
+
+.topnav .search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: 1px;
+  cursor: pointer;
+  border-radius: 12px;
+}
+
+.topnav .search-container button:hover {
+  background: #ccc;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav .search-container {
+    float: none;
+  }
+  .topnav a, .topnav input[type=text], .topnav .search-container button {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+    text-transform: lowercase;
+  }
+  .topnav input[type=text] {
+    border: 2px solid #ccc;  
+  }
+}
+
+	</style>
+  </body>
+</html>
