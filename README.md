@@ -26,20 +26,24 @@ o Data stored in twitterData_queryTerm folder
 o We use the ‘nytimesarticle’ Python wrapper for the New York Times Article Search API.
 o We collect 100 articles per topic, with each article in a separate text file.
 o Data stored in nyDataFiles_articles_queryTerm folder
+
 II. Run Mapper_wc.py and Reducer_wc.py on Hadoop Python stream
- Input the raw data file-by-file.
- Removing stop words using the ‘stopwords’ package and ‘NLTK’ stop words corpus.
- Clean the data, removing URLs, handles etc.
- Outputting (word, 1).
- Execute reducer_wc.py.
- Outputting (word, count) in a TSV (tab separate values) file.
+ Input the raw data file-by-file.
+ Removing stop words using the ‘stopwords’ package and ‘NLTK’ stop words corpus.
+ Clean the data, removing URLs, handles etc.
+ Outputting (word, 1).
+ Execute reducer_wc.py.
+ Outputting (word, count) in a TSV (tab separate values) file.
+
 III. Sort data using sorted_tsv.py
- Sort data and store in sorted_data.csv file.
+ Sort data and store in sorted_data.csv file.
+
 IV. Visualize word cloud
- Run wordcloud.html to visualize wordclouds for all search terms.
+ Run wordcloud.html to visualize wordclouds for all search terms.
+
 V. Find word co-occurance using “mapper_word_cooccurance.py”
- Take the top 10 words from the sorted word count file.
- Define context: one article for NYT and collection of 10 tweets for Twitter
+ Take the top 10 words from the sorted word count file.
+ Define context: one article for NYT and collection of 10 tweets for Twitter
 Find co-occurance of the top 10 words in the context and output ((word1, word2), 1).
 Execute the reducer_wc.py file.
 Output the ((word1,word2), count).
