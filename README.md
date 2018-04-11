@@ -38,6 +38,8 @@ II. Run Mapper_wc.py and Reducer_wc.py on Hadoop Python stream
  Removing stop words using the ‘stopwords’ package and ‘NLTK’ stop words corpus.
  Clean the data, removing URLs, handles etc.
  Outputting (word, 1).
+ 
+
  Execute reducer_wc.py.
  Outputting (word, count) in a TSV (tab separate values) file.
 
@@ -55,4 +57,10 @@ Execute the reducer_wc.py file.
 Output the ((word1,word2), count).
 Sort and output.
 
+#"NYtimes Article data Word Cloud "
+ ![alt tag](nytWC.png)
+
+#Nytimes Article Word Co-occurence
+ g
+![alt tag](nytimesCooccure.png)
 
