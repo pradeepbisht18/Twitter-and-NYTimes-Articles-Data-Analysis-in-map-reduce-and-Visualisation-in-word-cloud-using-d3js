@@ -2,7 +2,7 @@
 """
 Created on Sat Mar 31 20:44:36 2018
 
-@author: Karan Hora
+@author: Pradeep Singh Bisht
 """
 
 from nytimesarticle import articleAPI
@@ -38,7 +38,7 @@ def parse_articles(articles):
     return(news)
     
 
-save_path = 'C:/Users/Karan Hora/Desktop/587 DIC/lab 2/nyDataFiles_articles_china'
+save_path = 'nyDataFiles_articles_china'
 queryTerm = 'china'
 
 for j in range(1, 11):

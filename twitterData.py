@@ -2,7 +2,7 @@
 """
 Created on Thu Apr  5 21:28:05 2018
 
-@author: Karan Hora
+@author: Pradeep Singh Bisht
 """
 import tweepy
 from tweepy import OAuthHandler
@@ -29,7 +29,7 @@ language = "en"
 
 num_tweets = 5000
 
-save_path = 'C:/Users/Karan Hora/Desktop/587 DIC/lab 2/twitterDataFiles_china'
+save_path = 'twitterDataFiles_china'
 
 allTweets = []
 flag = 10
