@@ -2,7 +2,7 @@
 """
 Created on Thu Apr  5 21:28:05 2018
 
-@author: Pradeep Singh Bisht
+@author: Karan Hora
 """
 import tweepy
 from tweepy import OAuthHandler
