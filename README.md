@@ -18,13 +18,19 @@ HTML, Javascript, d3.js
 3. Steps
 I. Collect Data (execute nyData.py and twitterData.py)
  Twitter
+ 
  We use the ‘Tweepy’ package in Python to collect tweets from Twitter.
+ 
  We collect approximately 2500 tweets per topic segregated into around 250 files with 10 tweets
 each.
+ 
  Data stored in twitterData_queryTerm folder
  NYT
+ 
  We use the ‘nytimesarticle’ Python wrapper for the New York Times Article Search API.
+ 
  We collect 100 articles per topic, with each article in a separate text file.
+ 
  Data stored in nyDataFiles_articles_queryTerm folder
 
 II. Run Mapper_wc.py and Reducer_wc.py on Hadoop Python stream
@@ -48,3 +54,5 @@ Find co-occurance of the top 10 words in the context and output ((word1, word2),
 Execute the reducer_wc.py file.
 Output the ((word1,word2), count).
 Sort and output.
+
+
